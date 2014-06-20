@@ -34,5 +34,39 @@ public partial class Graficos_GraficasOrdenesPago : System.Web.UI.Page
               .SetSeries(analisis.ToArray());
 
         ltrChart.Text = chart.ToHtmlString();
+
+        var analisisPorFideicomiso = repositorioGraficas.ObtenerAnalisisOrdenPagoFideicomiso();
+        Highcharts chartFideicomiso = new Highcharts("chartFideicomiso")
+             .InitChart(new Chart { DefaultSeriesType = ChartTypes.Column })
+             .SetTitle(new Title { Text = "Gráfica por Fideicomiso" })
+             .SetXAxis(new XAxis { Type = AxisTypes.Category }) //OBTENER TIPOS DE ORDENES DE PAGO
+             .SetYAxis(new[]
+                      {
+                          new YAxis
+                          {
+                              Title = new YAxisTitle { Text = "Número de ordenes" },
+                              GridLineWidth = 1
+                          }
+                      })
+             .SetSeries(analisisPorFideicomiso.ToArray());
+
+        ltrChart2.Text = chartFideicomiso.ToHtmlString();
+
+        var analisisPorEmpresa = repositorioGraficas.ObtenerAnalisisOrdenPagoEmpresa();
+        Highcharts chartEmpresa = new Highcharts("chartEmpresa")
+             .InitChart(new Chart { DefaultSeriesType = ChartTypes.Column })
+             .SetTitle(new Title { Text = "Gráfica por Empresa" })
+             .SetXAxis(new XAxis { Type = AxisTypes.Category }) //OBTENER TIPOS DE ORDENES DE PAGO
+             .SetYAxis(new[]
+                      {
+                          new YAxis
+                          {
+                              Title = new YAxisTitle { Text = "Número de ordenes" },
+                              GridLineWidth = 1
+                          }
+                      })
+             .SetSeries(analisisPorEmpresa.ToArray());
+
+        ltrChart3.Text = chartEmpresa.ToHtmlString();
     }
 }

@@ -36,7 +36,6 @@ public class RepositorioGraficas
         return series;
 
     }
-
     public IEnumerable<Series> ObtenerAnalisisOrdenPago()
     {
         var ordenes = (from t in context.OrdenesPagoTipo
@@ -55,6 +54,43 @@ public class RepositorioGraficas
         }
 
         return series;
+    }
+    public IEnumerable<Series> ObtenerAnalisisOrdenPagoFideicomiso()
+    {
+        var ordenes = (from f in context.Fideicomisos
+                       join o in context.OrdenesPago on f.IdFideicomiso equals o.Fideicomiso into ordenesF
+                       from of in ordenesF.DefaultIfEmpty()
+                       group of by f);
 
+        List<Series> series = new List<Series>();
+        foreach (var orden in ordenes)
+        {
+            series.Add(new Series
+            {
+                Name = orden.Key.Fideicomiso,
+                Data = new DotNet.Highcharts.Helpers.Data(new Point[] { new Point { Y = orden.Key.OrdenesPago.Count() } })
+            });
+        }
+
+        return series;
+    }
+    public IEnumerable<Series> ObtenerAnalisisOrdenPagoEmpresa()
+    {
+        var ordenes = (from e in context.Empresas
+                       join o in context.OrdenesPago on e.idEmpresa equals o.Empresa into ordenesE
+                       from oe in ordenesE.DefaultIfEmpty()
+                       group oe by e);
+
+        List<Series> series = new List<Series>();
+        foreach (var orden in ordenes)
+        {
+            series.Add(new Series
+            {
+                Name = orden.Key.Nombre,
+                Data = new DotNet.Highcharts.Helpers.Data(new Point[] { new Point { Y = orden.Key.OrdenesPago.Count() } })
+            });
+        }
+
+        return series;
     }
 }
