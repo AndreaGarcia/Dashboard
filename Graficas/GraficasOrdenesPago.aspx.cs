@@ -18,7 +18,6 @@ public partial class Graficos_GraficasOrdenesPago : System.Web.UI.Page
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-        //var TiposOrdenes= RepositorioGraficas.
         Highcharts chart = new Highcharts("chart")
               .InitChart(new Chart { DefaultSeriesType = ChartTypes.Line })
               .SetTitle(new Title { Text = "Combiner History" })
@@ -29,30 +28,16 @@ public partial class Graficos_GraficasOrdenesPago : System.Web.UI.Page
                           {
                               Title = new YAxisTitle { Text = "Current" },
                               GridLineWidth = 1
-                          },
-                          new YAxis
-                          {
-                              Labels = new YAxisLabels { Formatter = "function() { return this.value +'°C'; }", },
-                              Title = new YAxisTitle { Text = "Temperature" },
-                              Opposite = true,
-                              GridLineWidth = 0
                           }
-                      });
-              //.SetSeries(new[]
-              //         {
-              //             new Series
-              //             {
-              //                 Name = "Current",
-              //                 YAxis = 0,
-              //                 Data = new Data(history.Select(x => new Point { X = GetTotalMilliseconds(x.recordTime), Y = x.current}).ToArray())
-              //             },
-              //             new Series
-              //             {
-              //                 Name = "Temperature",
-              //                 YAxis = 1,
-              //                 Data = new Data(history.Select(x => new Point { X = GetTotalMilliseconds(x.recordTime), Y = x.temperature}).ToArray())
-              //             }
-              //         });
+                      })
+              .SetSeries(new[]
+                       {
+                           new Series
+                           {
+                               Name = "Current",
+                               //YAxis = 0,
+                               Data = new Data(history.Select(x => new Point { X = GetTotalMilliseconds(x.recordTime), Y = x.current}).ToArray())
+                           }
+         });
     }
-
 }

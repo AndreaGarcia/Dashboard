@@ -10,7 +10,7 @@
 </style>
 <div class="art-block clearfix">
     <div class="art-blockheader">
-        <h3 class="t" style="color: white">REPORTES Y GRÁFICAS</h3>
+        <h3 class="t" style="color: white">GRÁFICAS</h3>
     </div>
     <div class="art-blockcontent">
         <table cellpadding="0" cellspacing="0" style="width: 100%; text-align: center;" class="ColorRenglon" id="TablaMenu">
@@ -19,7 +19,7 @@
                     <asp:Image ID="Image6" runat="server" AlternateText="Gráficas" ImageUrl="~/Images/menuImages/Graficas.png" Width="32px" Height="32px"/>
                 </td>
                 <td style="text-align: left">
-                    <b>Gráficas Ordenes de Pago
+                    <b>Ordenes de Pago
                     </b>
                 </td>
             </tr>
