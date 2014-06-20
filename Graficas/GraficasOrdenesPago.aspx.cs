@@ -14,30 +14,35 @@ public partial class Graficos_GraficasOrdenesPago : System.Web.UI.Page
     RepositorioGraficas repositorioGraficas;
     public Graficos_GraficasOrdenesPago()
     {
-     
+        repositorioGraficas = new RepositorioGraficas();
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+        var analisis = repositorioGraficas.ObtenerAnalisisOrdenPago(DateTime.Now.AddDays(-30), DateTime.Now);
         Highcharts chart = new Highcharts("chart")
-              .InitChart(new Chart { DefaultSeriesType = ChartTypes.Line })
-              .SetTitle(new Title { Text = "Combiner History" })
-              .SetXAxis(new XAxis { Type = AxisTypes.Datetime })
+              .InitChart(new Chart { DefaultSeriesType = ChartTypes.Column })
+              .SetTitle(new Title { Text = "Gráfica por tipo de Ordenes de pago" })
+              .SetXAxis(new XAxis { Type = AxisTypes.Category }) //OBTENER TIPOS DE ORDENES DE PAGO
               .SetYAxis(new[]
                       {
                           new YAxis
                           {
-                              Title = new YAxisTitle { Text = "Current" },
+                              Title = new YAxisTitle { Text = "Número de ordenes" },
                               GridLineWidth = 1
                           }
                       })
-              .SetSeries(new[]
-                       {
-                           new Series
-                           {
-                               Name = "Current",
-                               //YAxis = 0,
-                               Data = new Data(history.Select(x => new Point { X = GetTotalMilliseconds(x.recordTime), Y = x.current}).ToArray())
-                           }
-         });
+              .SetSeries(analisis.ToArray());
+
+        ltrChart.Text = chart.ToHtmlString();
+
+        //new[]
+        //               {
+        //                   new Series
+        //                   {
+        //                       Name = "Ordenes pago",
+        //                       //YAxis = 0,
+        //                       Data = new Data(analisis.Select(o=> new Point { X = o.Tipo, Y = o.Cantidad } ).ToArray())
+        //                   }
+        //        }
     }
 }
