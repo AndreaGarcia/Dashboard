@@ -36,4 +36,25 @@ public class RepositorioGraficas
         return series;
 
     }
+
+    public IEnumerable<Series> ObtenerAnalisisOrdenPago()
+    {
+        var ordenes = (from t in context.OrdenesPagoTipo
+                       join o in context.OrdenesPago on t.IdTipoOrden equals o.Tipo into ordenesTipo
+                       from ot in ordenesTipo.DefaultIfEmpty()
+                       group ot by t);
+
+        List<Series> series = new List<Series>();
+        foreach (var orden in ordenes)
+        {
+            series.Add(new Series
+            {
+                Name = orden.Key.Tipo,
+                Data = new DotNet.Highcharts.Helpers.Data(new Point[] { new Point { Y = orden.Key.OrdenesPago.Count() } })
+            });
+        }
+
+        return series;
+
+    }
 }

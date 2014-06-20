@@ -18,7 +18,7 @@ public partial class Graficos_GraficasOrdenesPago : System.Web.UI.Page
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-        var analisis = repositorioGraficas.ObtenerAnalisisOrdenPago(DateTime.Now.AddDays(-30), DateTime.Now);
+        var analisis = repositorioGraficas.ObtenerAnalisisOrdenPago();
         Highcharts chart = new Highcharts("chart")
               .InitChart(new Chart { DefaultSeriesType = ChartTypes.Column })
               .SetTitle(new Title { Text = "Gráfica por tipo de Ordenes de pago" })
@@ -34,15 +34,5 @@ public partial class Graficos_GraficasOrdenesPago : System.Web.UI.Page
               .SetSeries(analisis.ToArray());
 
         ltrChart.Text = chart.ToHtmlString();
-
-        //new[]
-        //               {
-        //                   new Series
-        //                   {
-        //                       Name = "Ordenes pago",
-        //                       //YAxis = 0,
-        //                       Data = new Data(analisis.Select(o=> new Point { X = o.Tipo, Y = o.Cantidad } ).ToArray())
-        //                   }
-        //        }
     }
 }
