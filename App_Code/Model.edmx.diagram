@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f4b6ed4ec0ad42878add47a441c413eb" Name="Diagram1">
+        <EntityTypeShape EntityType="SICMST2Model.Autobuses" Width="1.5" PointX="5.25" PointY="59.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.AutobusesKmFueraServicio" Width="1.5" PointX="10.5" PointY="53.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.AutobusesKmServicio" Width="1.5" PointX="10.5" PointY="57.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.AutobusesTurnos_" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.Cajeros" Width="1.5" PointX="5.25" PointY="44.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.Ciudades" Width="1.5" PointX="0.75" PointY="47.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.ClaseTarjeta" Width="1.5" PointX="3" PointY="39.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.Concesiones" Width="1.5" PointX="5.25" PointY="54.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.dCobroEfectivo" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.dCobroPrepago" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.DiasFestivos" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.Dispositivos" Width="1.5" PointX="5.25" PointY="47.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.Documentos" Width="1.5" PointX="13.5" PointY="45.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.DocumentosCategoria" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.dPrepagoCajeros" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.dPrepagoEstablecimientos" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.dPrepagoRedRecarga" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.Empresas" Width="1.5" PointX="3" PointY="44.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.EmpresasTipo" Width="1.5" PointX="0.75" PointY="44.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.Fideicomisos" Width="1.5" PointX="3" PointY="51.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.FideicomisosEmpresas" Width="1.5" PointX="8.25" PointY="48.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.GrupoDispositivos" Width="1.5" PointX="3" PointY="54.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.OperacionesRecaudo" Width="1.5" PointX="8.25" PointY="43.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.OperacionesRecaudoClase" Width="1.5" PointX="6" PointY="35.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.OperacionesRecaudoTipo" Width="1.5" PointX="3.75" PointY="35.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.OrdenesEntrada" Width="1.5" PointX="11.25" PointY="39.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.OrdenesEntradaCanceladas" Width="1.5" PointX="13.5" PointY="39.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.OrdenesEntradaDetalle" Width="1.5" PointX="13.5" PointY="35.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.OrdenesEntradaEstatus" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.OrdenesEntradaTipo" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.OrdenesPago" Width="1.5" PointX="11.25" PointY="46.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.OrdenesPagoCanceladas" Width="1.5" PointX="13.5" PointY="50.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.OrdenesPagoDetalle" Width="1.5" PointX="13.5" PointY="53.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.OrdenesPagoEstatus" Width="1.5" PointX="9" PointY="40.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.OrdenesPagoPagos" Width="1.5" PointX="13.5" PointY="58.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.OrdenesPagoTipo" Width="1.5" PointX="9" PointY="37.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.Parabuses" Width="1.5" PointX="8.25" PointY="60.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.POS" Width="1.5" PointX="8.25" PointY="64" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.PosTipo" Width="1.5" PointX="6" PointY="68.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.Propietarios" Width="1.5" PointX="3" PointY="62.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.PuntosControl" Width="1.5" PointX="8.25" PointY="56.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.RedRecarga" Width="1.5" PointX="5.25" PointY="72.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.Roles" Width="1.5" PointX="6" PointY="65.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.Rutas" Width="1.5" PointX="3" PointY="72.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.Tarjetas" Width="1.5" PointX="5.25" PointY="39" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.TarjetasUsuarios" Width="1.5" PointX="10.5" PointY="62" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.TipoEquipos" Width="1.5" PointX="0.75" PointY="55.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.Usuarios" Width="1.5" PointX="8.25" PointY="51.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SICMST2Model.UsuarioTransporte" Width="1.5" PointX="3" PointY="76.875" IsExpanded="true" />
+        <AssociationConnector Association="SICMST2Model.FK_Autobus_Propietario" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_Autobus_Ruta" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_Autobuses_Ciudades" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_Autobuses_Empresas" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_AutobusesKilometros_Autobuses" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_AutobusesKmFueraServicio_Autobuses" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_OrdenesPagoDetalle_Autobuses" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_AutobusesKmFueraServicio_Empresas" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_AutobusesKilometros_Empresas" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_Cajeros_Empresas" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_Empresa_Ciudad" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_Fideicomisos_Ciudades" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_Parabuses_Ciudades" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_POS_Ciudades" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_Propietario_Ciudad" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_PuntosCotnrol_Ciudades" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_Ruta_Ciudad" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_Usuario_Ciudad" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_Tarjeta_ClaseTarjeta" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_Concesionarios_Empresas" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_Concesiones_Propietarios" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_Dispositivo_Empresa" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_Dispositivo_GrupoDispositivo" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_Documentos_OrdenesEntrada" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_Documentos_OrdenesPago" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_Empresas_EmpresasTipo" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_FideicomisosEmpresas_Empresas" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_OperacionesRecaudo_Empresas" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_OrdenesPago_Empresas" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_RedRecarga_Empresas" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_Tarjeta_Empresa" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_Usuarios_Empresas" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_FideicomisosEmpresas_Fideicomisos" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_OrdenesPago_Fideicomisos" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_Usuarios_Fideicomisos" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_GrupoDispositivo_TipoEquipo" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_OperacionesRecaudo_OperacionesRecaudoClase" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_OperacionesRecaudo_OperacionesRecaudoTipo" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_OperacionesRecaudoClase_OperacionesRecaudoTipo" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_OrdenesEntradaCancelaciones_OrdenesEntrada" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_OrdenesEntradaDetalle_OrdenesEntrada" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_OrdenesPago_OrdenesPagoEstatus" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_OrdenesPago_OrdenesPagoTipo" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_OrdenesPagoCancelaciones_OrdenesPago" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_OrdenesPagoDetalle_OrdenesPago" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_OrdenesPagoPagos_OrdenesPago" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_Parabuses_Rutas" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_POS_PosTipo" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_POS_Rutas" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_PuntosControl_Rutas" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_Usuarios_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_TarjetasUsuario_Tarjeta" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_TarjetasUsuario_Usuario" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
