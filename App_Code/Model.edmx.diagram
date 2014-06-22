@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f4b6ed4ec0ad42878add47a441c413eb" Name="Diagram1">
+      <Diagram DiagramId="f4b6ed4ec0ad42878add47a441c413eb" Name="Diagram1" ZoomLevel="69">
         <EntityTypeShape EntityType="SICMST2Model.Autobuses" Width="1.5" PointX="5.25" PointY="59.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SICMST2Model.AutobusesKmFueraServicio" Width="1.5" PointX="10.5" PointY="53.875" IsExpanded="true" />
         <EntityTypeShape EntityType="SICMST2Model.AutobusesKmServicio" Width="1.5" PointX="10.5" PointY="57.875" IsExpanded="true" />
@@ -107,6 +107,9 @@
         <AssociationConnector Association="SICMST2Model.FK_Usuarios_Roles" ManuallyRouted="false" />
         <AssociationConnector Association="SICMST2Model.FK_TarjetasUsuario_Tarjeta" ManuallyRouted="false" />
         <AssociationConnector Association="SICMST2Model.FK_TarjetasUsuario_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="SICMST2Model.FK_OrdenesEntrada_Empresas" />
+        <AssociationConnector Association="SICMST2Model.FK_OrdenesEntrada_Fideicomisos" />
+        <AssociationConnector Association="SICMST2Model.FK_OrdenesEntrada_OrdenesEntradaTipo" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

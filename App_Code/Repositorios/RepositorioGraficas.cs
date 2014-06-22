@@ -14,7 +14,6 @@ public class RepositorioGraficas
 	{
         context = new SICMST2Entities();
 	}
-
     public IEnumerable<Series> ObtenerAnalisisOrdenPago(DateTime inicio, DateTime fin)
     {
         var ordenes = (from t in context.OrdenesPagoTipo

@@ -23,6 +23,15 @@
                     </b>
                 </td>
             </tr>
+              <tr id="Tr2" href="/Graficas/GraficasOrdenesEntrada.aspx">
+                <td>
+                    <asp:Image ID="Image1" runat="server" AlternateText="Gráficas" ImageUrl="~/Images/menuImages/Graficas2.png" Width="32px" Height="32px"/>
+                </td>
+                <td style="text-align: left">
+                    <b>Ordenes de Entrada
+                    </b>
+                </td>
+            </tr>
         </table>
     </div>
     </div>

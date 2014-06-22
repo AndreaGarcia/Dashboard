@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SICMST2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SICMST2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Autobuses">
           <Key>
             <PropertyRef Name="IdAutobus" />
@@ -53,27 +53,6 @@
           <Property Name="FechaRegistro" Type="datetime" />
           <Property Name="Usuario" Type="int" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'SICMST2.dbo.AutobusesTurnos' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="AutobusesTurnos">
-          <Property Name="VTR_IDTURNO" Type="float" />
-          <Property Name="VTR_CLAVECOND" Type="float" />
-          <Property Name="VTR_RUTADESCRIP" Type="nvarchar" MaxLength="255" />
-          <Property Name="VTR_NUMECON" Type="float" />
-          <Property Name="VTR_FHINICIO" Type="nvarchar" MaxLength="255" />
-          <Property Name="VTR_FHFINAL" Type="nvarchar" MaxLength="255" />
-          <Property Name="VTR_FECHATURNO" Type="datetime" />
-          <Property Name="VTR_CORRIDA" Type="float" />
-          <Property Name="VTR_SUBIDAS" Type="float" />
-          <Property Name="VTR_BAJADAS" Type="float" />
-          <Property Name="VTR_AUXILIARES" Type="float" />
-          <Property Name="VTR_BLOQUEOS" Type="float" />
-          <Property Name="VTR_VUELTASBEA" Type="float" />
-          <Property Name="VTR_ASCENSOS" Type="float" />
-          <Property Name="VTR_PASAJEROS" Type="float" />
-          <Property Name="VTR_TARPROM" Type="float" />
-          <Property Name="VTR_DISTANCIA" Type="float" />
-        </EntityType>-->
         <EntityType Name="AutobusesTurnos_">
           <Key>
             <PropertyRef Name="IdTurno" />
@@ -999,6 +978,42 @@ advertencia 6013: La tabla o vista 'SICMST2.dbo.AutobusesTurnos' no tiene defini
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_OrdenesEntrada_Empresas">
+          <End Role="Empresas" Type="Self.Empresas" Multiplicity="0..1" />
+          <End Role="OrdenesEntrada" Type="Self.OrdenesEntrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresas">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="OrdenesEntrada">
+              <PropertyRef Name="Empresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdenesEntrada_Fideicomisos">
+          <End Role="Fideicomisos" Type="Self.Fideicomisos" Multiplicity="0..1" />
+          <End Role="OrdenesEntrada" Type="Self.OrdenesEntrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fideicomisos">
+              <PropertyRef Name="IdFideicomiso" />
+            </Principal>
+            <Dependent Role="OrdenesEntrada">
+              <PropertyRef Name="Fideicomiso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdenesEntrada_OrdenesEntradaTipo">
+          <End Role="OrdenesEntradaTipo" Type="Self.OrdenesEntradaTipo" Multiplicity="1" />
+          <End Role="OrdenesEntrada" Type="Self.OrdenesEntrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrdenesEntradaTipo">
+              <PropertyRef Name="IdTipoOrden" />
+            </Principal>
+            <Dependent Role="OrdenesEntrada">
+              <PropertyRef Name="Tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_OrdenesEntradaCancelaciones_OrdenesEntrada">
           <End Role="OrdenesEntrada" Type="Self.OrdenesEntrada" Multiplicity="1" />
           <End Role="OrdenesEntradaCanceladas" Type="Self.OrdenesEntradaCanceladas" Multiplicity="*" />
@@ -1485,6 +1500,18 @@ advertencia 6013: La tabla o vista 'SICMST2.dbo.AutobusesTurnos' no tiene defini
             <End Role="OperacionesRecaudoTipo" EntitySet="OperacionesRecaudoTipo" />
             <End Role="OperacionesRecaudoClase" EntitySet="OperacionesRecaudoClase" />
           </AssociationSet>
+          <AssociationSet Name="FK_OrdenesEntrada_Empresas" Association="Self.FK_OrdenesEntrada_Empresas">
+            <End Role="Empresas" EntitySet="Empresas" />
+            <End Role="OrdenesEntrada" EntitySet="OrdenesEntrada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdenesEntrada_Fideicomisos" Association="Self.FK_OrdenesEntrada_Fideicomisos">
+            <End Role="Fideicomisos" EntitySet="Fideicomisos" />
+            <End Role="OrdenesEntrada" EntitySet="OrdenesEntrada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdenesEntrada_OrdenesEntradaTipo" Association="Self.FK_OrdenesEntrada_OrdenesEntradaTipo">
+            <End Role="OrdenesEntradaTipo" EntitySet="OrdenesEntradaTipo" />
+            <End Role="OrdenesEntrada" EntitySet="OrdenesEntrada" />
+          </AssociationSet>
           <AssociationSet Name="FK_OrdenesEntradaCancelaciones_OrdenesEntrada" Association="Self.FK_OrdenesEntradaCancelaciones_OrdenesEntrada">
             <End Role="OrdenesEntrada" EntitySet="OrdenesEntrada" />
             <End Role="OrdenesEntradaCanceladas" EntitySet="OrdenesEntradaCanceladas" />
@@ -1598,8 +1625,7 @@ advertencia 6013: La tabla o vista 'SICMST2.dbo.AutobusesTurnos' no tiene defini
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SICMST2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1912,6 +1938,7 @@ advertencia 6013: La tabla o vista 'SICMST2.dbo.AutobusesTurnos' no tiene defini
           <NavigationProperty Name="RedRecarga" Relationship="Self.FK_RedRecarga_Empresas" FromRole="Empresas" ToRole="RedRecarga" />
           <NavigationProperty Name="Tarjetas" Relationship="Self.FK_Tarjeta_Empresa" FromRole="Empresas" ToRole="Tarjetas" />
           <NavigationProperty Name="Usuarios" Relationship="Self.FK_Usuarios_Empresas" FromRole="Empresas" ToRole="Usuarios" />
+          <NavigationProperty Name="OrdenesEntrada" Relationship="SICMST2Model.FK_OrdenesEntrada_Empresas" FromRole="Empresas" ToRole="OrdenesEntrada" />
         </EntityType>
         <EntityType Name="EmpresasTipo">
           <Key>
@@ -1932,6 +1959,7 @@ advertencia 6013: La tabla o vista 'SICMST2.dbo.AutobusesTurnos' no tiene defini
           <NavigationProperty Name="FideicomisosEmpresas" Relationship="Self.FK_FideicomisosEmpresas_Fideicomisos" FromRole="Fideicomisos" ToRole="FideicomisosEmpresas" />
           <NavigationProperty Name="OrdenesPago" Relationship="Self.FK_OrdenesPago_Fideicomisos" FromRole="Fideicomisos" ToRole="OrdenesPago" />
           <NavigationProperty Name="Usuarios" Relationship="Self.FK_Usuarios_Fideicomisos" FromRole="Fideicomisos" ToRole="Usuarios" />
+          <NavigationProperty Name="OrdenesEntrada" Relationship="SICMST2Model.FK_OrdenesEntrada_Fideicomisos" FromRole="Fideicomisos" ToRole="OrdenesEntrada" />
         </EntityType>
         <EntityType Name="FideicomisosEmpresas">
           <Key>
@@ -2024,6 +2052,9 @@ advertencia 6013: La tabla o vista 'SICMST2.dbo.AutobusesTurnos' no tiene defini
           <NavigationProperty Name="Documentos" Relationship="Self.FK_Documentos_OrdenesEntrada" FromRole="OrdenesEntrada" ToRole="Documentos" />
           <NavigationProperty Name="OrdenesEntradaCanceladas" Relationship="Self.FK_OrdenesEntradaCancelaciones_OrdenesEntrada" FromRole="OrdenesEntrada" ToRole="OrdenesEntradaCanceladas" />
           <NavigationProperty Name="OrdenesEntradaDetalle" Relationship="Self.FK_OrdenesEntradaDetalle_OrdenesEntrada" FromRole="OrdenesEntrada" ToRole="OrdenesEntradaDetalle" />
+          <NavigationProperty Name="Empresas" Relationship="SICMST2Model.FK_OrdenesEntrada_Empresas" FromRole="OrdenesEntrada" ToRole="Empresas" />
+          <NavigationProperty Name="Fideicomisos" Relationship="SICMST2Model.FK_OrdenesEntrada_Fideicomisos" FromRole="OrdenesEntrada" ToRole="Fideicomisos" />
+          <NavigationProperty Name="OrdenesEntradaTipo" Relationship="SICMST2Model.FK_OrdenesEntrada_OrdenesEntradaTipo" FromRole="OrdenesEntrada" ToRole="OrdenesEntradaTipo" />
         </EntityType>
         <EntityType Name="OrdenesEntradaCanceladas">
           <Key>
@@ -2064,6 +2095,7 @@ advertencia 6013: La tabla o vista 'SICMST2.dbo.AutobusesTurnos' no tiene defini
           </Key>
           <Property Name="IdTipoOrden" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="OrdenesEntrada" Relationship="SICMST2Model.FK_OrdenesEntrada_OrdenesEntradaTipo" FromRole="OrdenesEntradaTipo" ToRole="OrdenesEntrada" />
         </EntityType>
         <EntityType Name="OrdenesPago">
           <Key>
@@ -3280,7 +3312,55 @@ advertencia 6013: La tabla o vista 'SICMST2.dbo.AutobusesTurnos' no tiene defini
             <End Role="UsuarioTransporte" EntitySet="UsuarioTransporte" />
             <End Role="TarjetasUsuarios" EntitySet="TarjetasUsuarios" />
           </AssociationSet>
+          <AssociationSet Name="FK_OrdenesEntrada_Empresas" Association="SICMST2Model.FK_OrdenesEntrada_Empresas">
+            <End Role="Empresas" EntitySet="Empresas" />
+            <End Role="OrdenesEntrada" EntitySet="OrdenesEntrada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdenesEntrada_Fideicomisos" Association="SICMST2Model.FK_OrdenesEntrada_Fideicomisos">
+            <End Role="Fideicomisos" EntitySet="Fideicomisos" />
+            <End Role="OrdenesEntrada" EntitySet="OrdenesEntrada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdenesEntrada_OrdenesEntradaTipo" Association="SICMST2Model.FK_OrdenesEntrada_OrdenesEntradaTipo">
+            <End Role="OrdenesEntradaTipo" EntitySet="OrdenesEntradaTipo" />
+            <End Role="OrdenesEntrada" EntitySet="OrdenesEntrada" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_OrdenesEntrada_Empresas">
+          <End Type="SICMST2Model.Empresas" Role="Empresas" Multiplicity="0..1" />
+          <End Type="SICMST2Model.OrdenesEntrada" Role="OrdenesEntrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresas">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="OrdenesEntrada">
+              <PropertyRef Name="Empresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdenesEntrada_Fideicomisos">
+          <End Type="SICMST2Model.Fideicomisos" Role="Fideicomisos" Multiplicity="0..1" />
+          <End Type="SICMST2Model.OrdenesEntrada" Role="OrdenesEntrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fideicomisos">
+              <PropertyRef Name="IdFideicomiso" />
+            </Principal>
+            <Dependent Role="OrdenesEntrada">
+              <PropertyRef Name="Fideicomiso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdenesEntrada_OrdenesEntradaTipo">
+          <End Type="SICMST2Model.OrdenesEntradaTipo" Role="OrdenesEntradaTipo" Multiplicity="1" />
+          <End Type="SICMST2Model.OrdenesEntrada" Role="OrdenesEntrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrdenesEntradaTipo">
+              <PropertyRef Name="IdTipoOrden" />
+            </Principal>
+            <Dependent Role="OrdenesEntrada">
+              <PropertyRef Name="Tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

@@ -323,6 +323,7 @@ public partial class Empresas
         this.RedRecarga = new HashSet<RedRecarga>();
         this.Tarjetas = new HashSet<Tarjetas>();
         this.Usuarios = new HashSet<Usuarios>();
+        this.OrdenesEntrada = new HashSet<OrdenesEntrada>();
     }
 
     public int idEmpresa { get; set; }
@@ -351,6 +352,7 @@ public partial class Empresas
     public virtual ICollection<RedRecarga> RedRecarga { get; set; }
     public virtual ICollection<Tarjetas> Tarjetas { get; set; }
     public virtual ICollection<Usuarios> Usuarios { get; set; }
+    public virtual ICollection<OrdenesEntrada> OrdenesEntrada { get; set; }
 }
 
 public partial class EmpresasTipo
@@ -373,6 +375,7 @@ public partial class Fideicomisos
         this.FideicomisosEmpresas = new HashSet<FideicomisosEmpresas>();
         this.OrdenesPago = new HashSet<OrdenesPago>();
         this.Usuarios = new HashSet<Usuarios>();
+        this.OrdenesEntrada = new HashSet<OrdenesEntrada>();
     }
 
     public int IdFideicomiso { get; set; }
@@ -383,6 +386,7 @@ public partial class Fideicomisos
     public virtual ICollection<FideicomisosEmpresas> FideicomisosEmpresas { get; set; }
     public virtual ICollection<OrdenesPago> OrdenesPago { get; set; }
     public virtual ICollection<Usuarios> Usuarios { get; set; }
+    public virtual ICollection<OrdenesEntrada> OrdenesEntrada { get; set; }
 }
 
 public partial class FideicomisosEmpresas
@@ -498,6 +502,9 @@ public partial class OrdenesEntrada
     public virtual ICollection<Documentos> Documentos { get; set; }
     public virtual ICollection<OrdenesEntradaCanceladas> OrdenesEntradaCanceladas { get; set; }
     public virtual ICollection<OrdenesEntradaDetalle> OrdenesEntradaDetalle { get; set; }
+    public virtual Empresas Empresas { get; set; }
+    public virtual Fideicomisos Fideicomisos { get; set; }
+    public virtual OrdenesEntradaTipo OrdenesEntradaTipo { get; set; }
 }
 
 public partial class OrdenesEntradaCanceladas
@@ -534,8 +541,15 @@ public partial class OrdenesEntradaEstatus
 
 public partial class OrdenesEntradaTipo
 {
+    public OrdenesEntradaTipo()
+    {
+        this.OrdenesEntrada = new HashSet<OrdenesEntrada>();
+    }
+
     public int IdTipoOrden { get; set; }
     public string Tipo { get; set; }
+
+    public virtual ICollection<OrdenesEntrada> OrdenesEntrada { get; set; }
 }
 
 public partial class OrdenesPago
