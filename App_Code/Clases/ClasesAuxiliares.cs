@@ -12,3 +12,10 @@ public class AnalisisOrdenesPago
 
     public int Cantidad { get; set; }
 }
+
+public class Rangos
+{
+    public double ValorMinimo { get; set; }
+
+    public double ValorMaximo { get; set; }
+}
