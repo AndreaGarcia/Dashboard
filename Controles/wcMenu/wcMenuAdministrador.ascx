@@ -32,6 +32,15 @@
                     </b>
                 </td>
             </tr>
+             <tr id="Tr3" href="/Reportes/Index.aspx">
+                <td>
+                    <asp:Image ID="Image2" runat="server" AlternateText="Gráficas" ImageUrl="~/Images/menuImages/Reporte.png" Width="32px" Height="32px"/>
+                </td>
+                <td style="text-align: left">
+                    <b>Reportes
+                    </b>
+                </td>
+            </tr>
         </table>
     </div>
     </div>
