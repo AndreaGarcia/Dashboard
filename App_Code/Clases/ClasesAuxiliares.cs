@@ -12,7 +12,6 @@ public class AnalisisOrdenesPago
 
     public int Cantidad { get; set; }
 }
-
 public class Rangos
 {
     public double ValorMinimo { get; set; }
@@ -20,6 +19,18 @@ public class Rangos
     public double ValorMaximo { get; set; }
 }
 
+public class InformacionBasica
+{
+    public string Fideicomiso { get; set; }
+
+    public DateTime Fecha { get; set; }
+
+    public int NumOrden { get; set; }
+
+    public string Estatus { get; set; }
+
+    public string Empresa { get; set; }
+}
 public class EstadoCuenta
 {
     public int Orden { get; set; }
