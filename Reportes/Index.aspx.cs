@@ -5,12 +5,15 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Reportes;
+using System.Threading.Tasks;
 public partial class Reportes_Index : System.Web.UI.Page
 {
     private RepositorioReportes repositorioReportes;
+    private readonly ServicioEstadoCuenta servicio;
     public Reportes_Index()
     {
         repositorioReportes = new RepositorioReportes();
+        servicio = new ServicioEstadoCuenta();
     }
 
     private List<string> reportes = new List<string>
@@ -33,32 +36,31 @@ public partial class Reportes_Index : System.Web.UI.Page
             {
                 reportes[i] = string.Format(reportes[i], "pago");
             }
-        }
-        if (tipoReporte == "2")
+        } else if (tipoReporte == "2")
         {
             for (int i = 0; i < reportes.Count; i++)
             {
                 reportes[i] = string.Format(reportes[i], "entrada");
             }
-        }
-        if(tipoReporte == "3")
-        {
-            GenerarReporte.Visible = true;
-            TipoOrden.Visible = false;
+        }else if(tipoReporte == "3")
+            {
+                GenerarReporte.Visible = true;
+                TipoOrden.Visible = false;
 
-            RadDropDownFideicomisos.DataTextField = "Fideicomiso";
-            RadDropDownFideicomisos.DataValueField = "IdFideicomiso";
-            RadDropDownFideicomisos.DataSource = repositorioReportes.ObtenerFideicomisos().ToList();
-            RadDropDownFideicomisos.DataBind();
-            RadDropDownFideicomisos.Visible = true;
+                RadDropDownFideicomisos.DataTextField = "Fideicomiso";
+                RadDropDownFideicomisos.DataValueField = "IdFideicomiso";
+                RadDropDownFideicomisos.DataSource = repositorioReportes.ObtenerFideicomisos().ToList();
+                RadDropDownFideicomisos.DataBind();
+                RadDropDownFideicomisos.Visible = true;
 
-            lblInicio.Visible = true;
-            lblFin.Visible = true;
-            fechaInicial.Visible = true;
-            fechaFinal.Visible = true;
+                lblInicio.Visible = true;
+                lblFin.Visible = true;
+                fechaInicial.Visible = true;
+                fechaFinal.Visible = true;
 
-            ReportViewer1.Visible = false;
-        }
+                ReportViewer1.Visible = false;
+            }
+
         TipoOrden.DataSource = reportes;
         TipoOrden.DataBind();
     }   
@@ -87,5 +89,14 @@ public partial class Reportes_Index : System.Web.UI.Page
     {
         GenerarReporte.Visible = true;
     }
+    protected async void rgEstadoCuenta_NeedsDataSource(object sender, Telerik.Web.UI.GridNeedDataSourceEventArgs e) 
+    {
+        DateTime fechaIni = fechaInicial.SelectedDate,
+                fechaFin = fechaFinal.SelectedDate;
+        var idFideicomiso = int.Parse(RadDropDownFideicomisos.SelectedValue);
+
+        return await servicio.ObtenerEstadoCuentaAsync(fechaIni, fechaFin, idFideicomiso);
+    }
+
 } 
 
