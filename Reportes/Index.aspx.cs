@@ -7,6 +7,12 @@ using System.Web.UI.WebControls;
 using Reportes;
 public partial class Reportes_Index : System.Web.UI.Page
 {
+    private RepositorioReportes repositorioReportes;
+    public Reportes_Index()
+    {
+        repositorioReportes = new RepositorioReportes();
+    }
+
     private List<string> reportes = new List<string>
     {
         "Reporte orden {0} por tipo",
@@ -28,14 +34,31 @@ public partial class Reportes_Index : System.Web.UI.Page
                 reportes[i] = string.Format(reportes[i], "pago");
             }
         }
-        else
+        if (tipoReporte == "2")
         {
             for (int i = 0; i < reportes.Count; i++)
             {
                 reportes[i] = string.Format(reportes[i], "entrada");
             }
         }
+        if(tipoReporte == "3")
+        {
+            GenerarReporte.Visible = true;
+            TipoOrden.Visible = false;
 
+            RadDropDownFideicomisos.DataTextField = "Fideicomiso";
+            RadDropDownFideicomisos.DataValueField = "IdFideicomiso";
+            RadDropDownFideicomisos.DataSource = repositorioReportes.ObtenerFideicomisos().ToList();
+            RadDropDownFideicomisos.DataBind();
+            RadDropDownFideicomisos.Visible = true;
+
+            lblInicio.Visible = true;
+            lblFin.Visible = true;
+            fechaInicial.Visible = true;
+            fechaFinal.Visible = true;
+
+            ReportViewer1.Visible = false;
+        }
         TipoOrden.DataSource = reportes;
         TipoOrden.DataBind();
     }   
