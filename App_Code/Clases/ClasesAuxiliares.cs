@@ -19,3 +19,20 @@ public class Rangos
 
     public double ValorMaximo { get; set; }
 }
+
+public class EstadoCuenta
+{
+    public int Orden { get; set; }
+
+    public string Tipo { get; set; }
+
+    public DateTime Fecha { get; set; }
+
+    public int Fideicomiso { get; set; }
+
+    public string Empresa { get; set; }
+
+    public decimal ImporteEntrada { get; set; }
+
+    public decimal ImporteSalida { get; set; }
+}

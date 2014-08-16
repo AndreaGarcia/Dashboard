@@ -42,9 +42,11 @@
                         <telerik:ReportViewer ID="ReportViewer1" runat="server" Width="100%" Height="1000px"></telerik:ReportViewer>
                     </div>
 
+    <telerik:RadGrid ID="rgEstadoCuenta" runat="server" AllowSorting="false" Skin="Metro" AutoGenerateColumns="true" OnNeedDataSource="">
 
+    </telerik:RadGrid>
     <telerik:RadGrid ID="rgOrdenesAceptadas" runat="server" AllowSorting="true" CellSpacing="0" GridLines="None" Skin="Metro"
-        AllowAutomaticDeletes="false" AllowAutomaticInserts="false" AllowAutomaticUpdates="false" AllowPaging="true" PageSize="30" OnNeedDataSource="rgOrdenesAceptadas_NeedDataSource">
+        AllowAutomaticDeletes="false" AllowAutomaticInserts="false" AllowAutomaticUpdates="false" AllowPaging="true" PageSize="30">
         <MasterTableView AutoGenerateColumns="false" DataKeyNames="IdOrdenPago, IdEmpresa" ClientDataKeyNames="IdOrdenPago, IdEmpresa" PageSize="30" CommandItemDisplay="None">
               <Columns>
                 <telerik:GridBoundColumn DataField="IdOrdenPago" DataType="System.Int32" FilterControlAltText="IdOrdenPago" HeaderText="IdOrdenPago" SortExpression="IdOrdenPago" UniqueName="IdOrdenPago" Visible="false">
