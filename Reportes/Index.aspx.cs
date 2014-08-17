@@ -67,35 +67,38 @@ public partial class Reportes_Index : System.Web.UI.Page
     protected void GenerarReporte_Click(object sender, EventArgs e)
     {
         var tipoOrden = TipoOrden.SelectedText;
-        switch (tipoOrden)
-        {
-            case "Reporte orden pago por tipo": ReportViewer1.ReportSource = new Reportes.ReporteOrdenTipo();
-                break;
-            case "Reporte orden pago por Fideicomiso": ReportViewer1.ReportSource = new Reportes.ReporteOrdenPagoFideicomiso();
-                break;
-            case "Reporte orden pago por Empresa": ReportViewer1.ReportSource = new Reportes.ReporteOrdenPagoEmpresa();
-                break;
-            case "Reporte orden entrada por tipo": ReportViewer1.ReportSource = new Reportes.ReportesOrdenesEntrada.ReporteEntradaTipo();
-                break;
-            case "Reporte orden entrada por Fideicomiso": ReportViewer1.ReportSource = new Reportes.ReportesOrdenesEntrada.ReporteOrdenEntradaFideicomiso();
-                break;
-            case "Reporte orden entrada por Empresa": ReportViewer1.ReportSource = new Reportes.ReportesOrdenesEntrada.ReporteEmpresas();
-                break;
+        //switch (tipoOrden)
+        //{
+        //    case "Reporte orden pago por tipo": ReportViewer1.ReportSource = new Reportes.ReporteOrdenTipo();
+        //        break;
+        //    case "Reporte orden pago por Fideicomiso": ReportViewer1.ReportSource = new Reportes.ReporteOrdenPagoFideicomiso();
+        //        break;
+        //    case "Reporte orden pago por Empresa": ReportViewer1.ReportSource = new Reportes.ReporteOrdenPagoEmpresa();
+        //        break;
+        //    case "Reporte orden entrada por tipo": ReportViewer1.ReportSource = new Reportes.ReportesOrdenesEntrada.ReporteEntradaTipo();
+        //        break;
+        //    case "Reporte orden entrada por Fideicomiso": ReportViewer1.ReportSource = new Reportes.ReportesOrdenesEntrada.ReporteOrdenEntradaFideicomiso();
+        //        break;
+        //    case "Reporte orden entrada por Empresa": ReportViewer1.ReportSource = new Reportes.ReportesOrdenesEntrada.ReporteEmpresas();
+        //        break;
 
-        }
+        //}
+
+        SetDataGrid();
         
     }
     protected void TipoOrden_SelectedIndexChanged(object sender, Telerik.Web.UI.DropDownListEventArgs e)
     {
         GenerarReporte.Visible = true;
     }
-    protected async void rgEstadoCuenta_NeedsDataSource(object sender, Telerik.Web.UI.GridNeedDataSourceEventArgs e) 
+    private void SetDataGrid()
     {
-        DateTime fechaIni = fechaInicial.SelectedDate,
-                fechaFin = fechaFinal.SelectedDate;
+        DateTime fechaIni = fechaInicial.SelectedDate.Value,
+                fechaFin = fechaFinal.SelectedDate.Value;
         var idFideicomiso = int.Parse(RadDropDownFideicomisos.SelectedValue);
 
-        return await servicio.ObtenerEstadoCuentaAsync(fechaIni, fechaFin, idFideicomiso);
+        rgEstadoCuenta.DataSource = servicio.ObtenerEstadoCuenta(fechaIni, fechaFin, idFideicomiso);
+        rgEstadoCuenta.DataBind();
     }
 
 } 

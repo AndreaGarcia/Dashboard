@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -9,14 +11,30 @@ using System.Web;
 /// </summary>
 public class RepositorioEstadoDeCuenta
 {
-    private readonly SICMST2Entities context;
+    private SICMST2Entities context;
+    private string connStr = "Data Source=calantha.arvixe.com;Initial Catalog=SICMST2;User ID=sicmst;Password=.tsmcis.;";
 	public RepositorioEstadoDeCuenta()
 	{
         context = new SICMST2Entities();
 	}
 
-    public async Task<List<T>> ObtenerQueryGenerico<T>(string query)
+    public List<EstadoCuenta> ObtenerEstadoCuenta(string query)
     {
-        return await context.Database.SqlQuery<T>(query).ToListAsync();
+        using (context = new SICMST2Entities())
+        {
+            using (var tran = context.Database.BeginTransaction())
+            {
+                try
+                {
+                    var result = context.Database.SqlQuery<EstadoCuenta>(query).ToList();
+                    return result;
+                }
+                catch (Exception e)
+                {
+                    string x = e.Message;
+                    return null;
+                }
+            }
+        }
     }
 }

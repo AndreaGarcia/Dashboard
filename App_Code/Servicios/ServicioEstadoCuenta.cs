@@ -15,7 +15,7 @@ public class ServicioEstadoCuenta
         repositorioEstadoCuenta = new RepositorioEstadoDeCuenta();
 	}
 
-    public async Task<List<EstadoCuenta>> ObtenerEstadoCuentaAsync(DateTime inicio, DateTime fin, int idFideicomiso)
+    public List<EstadoCuenta> ObtenerEstadoCuenta(DateTime inicio, DateTime fin, int idFideicomiso)
     {
         if(inicio == null || fin == null || idFideicomiso <= 0) 
             throw new ArgumentNullException("Los valores proporcionados no pueden ser nulos", "inicio, fin o fideicomiso");
@@ -23,7 +23,7 @@ public class ServicioEstadoCuenta
         if (inicio > fin)
             throw new ArgumentOutOfRangeException("El valor de inicio no debe ser mayor al de fin");
 
-        string query = string.Format(@"select R.Orden, R.Tipo, R.Fecha, R.Fideicomiso, R.Empresa, R.Concepto,R.ImporteEntrada,R.ImporteSalida from 
+        string query = string.Format(@"select R.Orden AS Orden, R.Tipo AS Tipo, R.Fecha AS Fecha, R.Fideicomiso AS Fideicomiso, R.Empresa AS Empresa, R.Concepto AS Concepto, R.ImporteEntrada AS ImporteEntrada,R.ImporteSalida AS ImporteSalida FROM 
                         (
                         SELECT 'Entrada' AS Tipo, oe.IdOrdenEntrada AS Orden, oe.fechaorden AS Fecha, f.IdFideicomiso AS Fideicomiso, e.Nombre AS Empresa, d.concepto AS Concepto, SUM(d.importe) AS ImporteEntrada, 0 AS ImporteSalida
                         FROM OrdenesEntrada oe JOIN
@@ -39,9 +39,9 @@ public class ServicioEstadoCuenta
                         Empresas e on op.empresa = e.IdEmpresa
                         GROUP BY op.IdOrdenPago, op.fechaorden,  f.IdFideicomiso, e.Nombre, d.concepto
                         ) AS R
-                        WHERE R.Fideicomiso = "+ idFideicomiso +" AND R.Fecha >= '" + inicio.ToShortDateString() + "' AND R.Fecha <= '" + fin.ToShortDateString() + "'");
-
-        List<EstadoCuenta> estadoCuenta =  await repositorioEstadoCuenta.ObtenerQueryGenerico<EstadoCuenta>(query);
+                        WHERE R.Fideicomiso = " + idFideicomiso + " AND R.Fecha >= '" + inicio.ToString("yyyy-MM-dd") + "' AND R.Fecha <= '" + fin.ToString("yyyy-MM-dd") + "'");
+       
+        List<EstadoCuenta> estadoCuenta = repositorioEstadoCuenta.ObtenerEstadoCuenta(query);
 
         return estadoCuenta;
     }

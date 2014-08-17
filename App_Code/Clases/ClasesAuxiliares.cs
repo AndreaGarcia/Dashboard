@@ -31,9 +31,9 @@ public class InformacionBasica
 
     public string Empresa { get; set; }
 }
-public class EstadoCuenta
+public struct EstadoCuenta
 {
-    public int Orden { get; set; }
+    public long Orden { get; set; }
 
     public string Tipo { get; set; }
 
@@ -43,7 +43,9 @@ public class EstadoCuenta
 
     public string Empresa { get; set; }
 
-    public decimal ImporteEntrada { get; set; }
+    public string Concepto { get; set; }
 
-    public decimal ImporteSalida { get; set; }
+    public decimal? ImporteEntrada { get; set; }
+
+    public decimal? ImporteSalida { get; set; }
 }

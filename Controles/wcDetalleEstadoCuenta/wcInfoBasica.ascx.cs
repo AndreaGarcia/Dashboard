@@ -22,7 +22,6 @@ public partial class Controles_wcDetalleEstadoCuenta_wcInfoBasica : System.Web.U
             _tipoPrincipal = value;
         }
     }
-
     public int TipoOrdenSecundario
     {
         get
@@ -34,7 +33,6 @@ public partial class Controles_wcDetalleEstadoCuenta_wcInfoBasica : System.Web.U
             _tipoSecundario = value;
         }
     }
-
     public int IdOrden
     {
         get
@@ -50,7 +48,6 @@ public partial class Controles_wcDetalleEstadoCuenta_wcInfoBasica : System.Web.U
     {
         repositorioEntrada = new RepositorioEntrada();
     }
-
     public void OnInit()
     {
         if (TipoOrdenPrincipal == 1) //ORDEN DE PAGO/SALIDA

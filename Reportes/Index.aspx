@@ -18,14 +18,11 @@
                                 <telerik:DropDownListItem Text="Estado de cuenta" Value="3" runat="server" />
                             </Items>
                         </telerik:RadDropDownList>
-
                         <telerik:RadDropDownList ID="TipoOrden" runat="server" Skin="MetroTouch" DefaultMessage="Seleccione el reporte..." Width="300px" DropDownWidth="300px" Visible="false" style="padding-left:10px" OnSelectedIndexChanged="TipoOrden_SelectedIndexChanged" AutoPostBack="true">
                         </telerik:RadDropDownList>
-
                         <telerik:RadDropDownList ID="RadDropDownFideicomisos" runat="server" Skin="MetroTouch" DefaultMessage="Seleccione el Fideicomiso..." Width="250px" DropDownWidth="250px" Visible="false" style="padding-left:10px;padding-right:10px" AutoPostBack="true">
                         </telerik:RadDropDownList>
-
-                         <asp:Label ID="lblInicio" runat="server" Visible="false">FECHA INICIAL:</asp:Label>
+                        <asp:Label ID="lblInicio" runat="server" Visible="false">FECHA INICIAL:</asp:Label>
                         <telerik:RadDatePicker ID="fechaInicial" runat="server" Skin="MetroTouch" Visible="false" Width="150px">
                             <DateInput runat="server" DateFormat="MM/dd/yyyy"></DateInput> 
                         </telerik:RadDatePicker>
@@ -35,75 +32,39 @@
                         </telerik:RadDatePicker>
 
                         <div id="Boton" style="padding-left:10px">
-                        <telerik:RadButton ID="GenerarReporte" runat="server" OnClick="GenerarReporte_Click" Text="GENERAR" Skin="MetroTouch" Visible="false"></telerik:RadButton>
+                            <telerik:RadButton ID="GenerarReporte" runat="server" OnClick="GenerarReporte_Click" Text="GENERAR" Skin="MetroTouch" Visible="false"></telerik:RadButton>
                         </div>
                     </div>
                     <div id="rwReportes" runat="server" style="width:70%;margin:0 auto;">
                         <telerik:ReportViewer ID="ReportViewer1" runat="server" Width="100%" Height="1000px"></telerik:ReportViewer>
                     </div>
 
-    <telerik:RadGrid ID="rgEstadoCuenta" runat="server" AllowSorting="false" Skin="Metro" AutoGenerateColumns="true" OnNeedDataSource="">
-
-    </telerik:RadGrid>
-    <telerik:RadGrid ID="rgOrdenesAceptadas" runat="server" AllowSorting="true" CellSpacing="0" GridLines="None" Skin="Metro"
-        AllowAutomaticDeletes="false" AllowAutomaticInserts="false" AllowAutomaticUpdates="false" AllowPaging="true" PageSize="30">
-        <MasterTableView AutoGenerateColumns="false" DataKeyNames="IdOrdenPago, IdEmpresa" ClientDataKeyNames="IdOrdenPago, IdEmpresa" PageSize="30" CommandItemDisplay="None">
-              <Columns>
-                <telerik:GridBoundColumn DataField="IdOrdenPago" DataType="System.Int32" FilterControlAltText="IdOrdenPago" HeaderText="IdOrdenPago" SortExpression="IdOrdenPago" UniqueName="IdOrdenPago" Visible="false">
-                    <ItemStyle Width="50px" />
-                </telerik:GridBoundColumn>
-                 <telerik:GridBoundColumn DataField="IdEmpresa" DataType="System.Int32" HeaderText="IdEmpresa" SortExpression="IdEmpresa" UniqueName="IdEmpresa" Visible="false">
-                    <ItemStyle Width="80px" />
-                </telerik:GridBoundColumn>
-                   <telerik:GridBoundColumn DataField="Ciudad" DataType="System.Int32" HeaderText="Ciudad" SortExpression="Ciudad" UniqueName="Ciudad">
-                    <ItemStyle Width="150px" />
-                </telerik:GridBoundColumn>
-                 <telerik:GridBoundColumn DataField="Fideicomiso" DataType="System.Int32" HeaderText="Fideicomiso" SortExpression="Fideicomiso" UniqueName="Fideicomiso">
-                    <ItemStyle Width="150px" />
-                </telerik:GridBoundColumn>
-                <telerik:GridBoundColumn DataField="NombreEmpresa" DataType="System.Int32" HeaderText="Empresa" SortExpression="NombreEmpresa" UniqueName="NombreEmpresa">
-                    <ItemStyle Width="200px" />
-                </telerik:GridBoundColumn>
-                  <telerik:GridBoundColumn DataField="NombreEstatus" DataType="System.Int32" HeaderText="Estatus" SortExpression="NombreEstatus" UniqueName="NombreEstatus">
-                    <ItemStyle Width="80px" />
-                </telerik:GridBoundColumn>
-                <telerik:GridBoundColumn DataField="ImporteOrden" HeaderText="Importe" SortExpression="ImporteOrden" UniqueName="ImporteOrden" DataFormatString="{0:C2}">
-                    <ItemStyle Width="80px" />
-                </telerik:GridBoundColumn>
-                <telerik:GridBoundColumn DataField="FechaInicio" HeaderText="Fecha inicio" SortExpression="FechaInicio" UniqueName="FechaInicio" DataFormatString="{0:d/M/yyyy}">
-                    <ItemStyle Width="100px" />
-                </telerik:GridBoundColumn>
-                <telerik:GridBoundColumn DataField="FechaFin" HeaderText="Fecha final" SortExpression="FechaFin" UniqueName="FechaFin" DataFormatString="{0:d/M/yyyy}">
-                    <ItemStyle Width="100px" />
-                </telerik:GridBoundColumn>
-                <telerik:GridBoundColumn DataField="FechaEmision" HeaderText="Fecha de emision" SortExpression="FechaEmision" UniqueName="FechaEmision">
-                    <ItemStyle Width="150px" />
-                </telerik:GridBoundColumn>
-                   <telerik:GridBoundColumn DataField="FechaAprobacion" HeaderText="Fecha de aprobacion" SortExpression="FechaAprobacion" UniqueName="FechaAprobacion">
-                    <ItemStyle Width="150px" />
-                </telerik:GridBoundColumn>
-                   <telerik:GridBoundColumn DataField="NombreUsuario" HeaderText="Usuario que aprobo" SortExpression="NombreUsuario" UniqueName="NombreUsuario">
-                    <ItemStyle Width="100px" />
-                </telerik:GridBoundColumn>
-            </Columns>
-            <PagerStyle Position="TopAndBottom" />
-            <NoRecordsTemplate>
-                <center><strong><span style="color: #ff0000">No hay ordenes aceptadas</span></strong></center>
-            </NoRecordsTemplate>
-            <CommandItemStyle Wrap="true" HorizontalAlign="Left" Width="100%" VerticalAlign="Middle" Height="30px" />
-            <HeaderStyle Font-Bold="true" HorizontalAlign="Center" Wrap="true" />
-
-            <PagerStyle FirstPageToolTip="Primera Pagina" LastPageToolTip="Ultima Pagina" NextPagesToolTip="Siguiente Pagina"
-                NextPageToolTip="Siguiente Pagina" PageButtonCount="20" PagerTextFormat="Pagina: {4} &amp;nbsp;Pagina &lt;strong&gt;{0}&lt;/strong&gt; 
-                                de &lt;strong&gt;{1}&lt;/strong&gt;, Cobro &lt;strong&gt;{2}&lt;/strong&gt; de &lt;strong&gt;{3}&lt;/strong&gt; de &lt;strong&gt;{5}&lt;/strong&gt;."
-                PageSizeLabelText="Cobros:" PrevPagesToolTip="Anterior Pagina" PrevPageToolTip="Siguiente Pagina"
-                AlwaysVisible="true" />
-        </MasterTableView>
-        <ClientSettings>
-            <Selecting AllowRowSelect="true" />
-            <ClientEvents OnRowDblClick="rgOrdenesAceptadas_OnRowDblClick" />
-        </ClientSettings>
-    </telerik:RadGrid>
+                    <telerik:RadGrid ID="rgEstadoCuenta" runat="server" AllowSorting="false" Skin="Metro" AutoGenerateColumns="false">
+                        <MasterTableView AutoGenerateColumns="false" DataKeyNames="Orden, Fideicomiso" ClientDataKeyNames="Orden, Fideicomiso" PageSize="30" CommandItemDisplay="None">
+                        <Columns>
+                         <telerik:GridBoundColumn DataField="Fecha" DataType="System.Int32" FilterControlAltText="Fecha" HeaderText="Fecha" SortExpression="Fecha" UniqueName="Fecha" Visible="True">
+                                    <ItemStyle Width="50px" />
+                          </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="Concepto" DefaultInsertValue="N/A" DataType="System.String" FilterControlAltText="Concepto" HeaderText="Concepto" SortExpression="Concepto" UniqueName="Concepto" Visible="True">
+                                    <ItemStyle Width="50px" />
+                          </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="Empresa" DataType="System.String" FilterControlAltText="Empresa" HeaderText="Empresa" SortExpression="Empresa" UniqueName="Empresa" Visible="True">
+                                    <ItemStyle Width="50px" />
+                          </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="ImporteEntrada" DefaultInsertValue="0.00" DataType="System.Decimal" FilterControlAltText="ImporteEntrada" HeaderText="Importe Entrada" SortExpression="ImporteEntrada" UniqueName="ImporteEntrada" Visible="True">
+                                    <ItemStyle Width="50px" />
+                          </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="ImporteSalida" DefaultInsertValue="0.00" DataType="System.Decimal" FilterControlAltText="ImporteSalida" HeaderText="Importe Salida" SortExpression="ImporteSalida" UniqueName="ImporteSalida" Visible="True">
+                                    <ItemStyle Width="50px" />
+                          </telerik:GridBoundColumn>
+                         </Columns>
+                            </MasterTableView>
+                    </telerik:RadGrid>
+                    <div id="lblFooter" style="float:right;padding-top:10px;font-size:large">
+                    <asp:Label ID="SumatoriaEntrada" runat="server">Total de entrada:</asp:Label><br />
+                    <asp:Label ID="SumatoriaSalida" runat="server">Total de salida:</asp:Label><br />
+                    <asp:Label ID="Residuo" runat="server">Residuo:</asp:Label>
+                    </div>
                 </div>
             </div>
         </div>
