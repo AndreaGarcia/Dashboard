@@ -18,7 +18,6 @@ public class Rangos
 
     public double ValorMaximo { get; set; }
 }
-
 public class InformacionBasica
 {
     public string Fideicomiso { get; set; }

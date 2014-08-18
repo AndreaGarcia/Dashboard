@@ -30,4 +30,24 @@ public class RepositorioEntrada
 
                 }).FirstOrDefault();
     }
+    public List<ContenedorGenerica> ObtenerDetalleTarifa(int idOrden)
+    {
+        return null;
+    }
+    public List<ContenedorGenerica> ObtenerDetalleRedRecarga(int idOrden)
+    {
+        return null;
+    }
+    public List<ContenedorGenerica> ObtenerDetalleCajeros(int idOrden)
+    {
+        return null;
+    }
+    public List<ContenedorGenerica> ObtenerDetalleGenerica(int idOrden)
+    {
+        return bd.OrdenesEntradaDetalle.Where(x => x.Orden == idOrden).Select((i, x) => new ContenedorGenerica
+        {
+            Concepto = i.Concepto,
+            Cantidad = i.Importe
+        }).ToList();
+    }
 }

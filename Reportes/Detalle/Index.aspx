@@ -39,7 +39,7 @@
                         <telerik:ReportViewer ID="ReportViewer1" runat="server" Width="100%" Height="1000px"></telerik:ReportViewer>
                     </div>
 
-                    <telerik:RadGrid ID="rgEstadoCuenta" runat="server" AllowSorting="false" Skin="Metro" AutoGenerateColumns="false">
+                    <telerik:RadGrid ID="rgEstadoCuenta" runat="server" AllowSorting="false" Skin="Metro" AutoGenerateColumns="false" Visible="false">
                         <MasterTableView AutoGenerateColumns="false" DataKeyNames="Orden, Fideicomiso" ClientDataKeyNames="Orden, Fideicomiso" PageSize="30" CommandItemDisplay="None">
                         <Columns>
                          <telerik:GridBoundColumn DataField="Fecha" DataType="System.Int32" FilterControlAltText="Fecha" HeaderText="Fecha" SortExpression="Fecha" UniqueName="Fecha" Visible="True">
@@ -60,13 +60,54 @@
                          </Columns>
                             </MasterTableView>
                     </telerik:RadGrid>
-                    <div id="lblFooter" style="float:right;padding-top:10px;font-size:large">
-                    <asp:Label ID="SumatoriaEntrada" runat="server">Total de entrada:</asp:Label><br />
-                    <asp:Label ID="SumatoriaSalida" runat="server">Total de salida:</asp:Label><br />
-                    <asp:Label ID="Residuo" runat="server">Residuo:</asp:Label>
+                    <div id="lblFooter" style="float:right;padding-top:10px;font-size:large" runat="server" visible="false">
+                    <asp:Label ID="SumatoriaEntrada" runat="server">Total de entrada:</asp:Label><asp:Label ID="lblTotalEntrada" runat="server"></asp:Label><br />
+                    <asp:Label ID="SumatoriaSalida" runat="server">Total de salida:</asp:Label><asp:Label ID="lblTotalSalida" runat="server"></asp:Label><br />
+                    <asp:Label ID="Residuo" runat="server">Residuo:</asp:Label><asp:Label ID="lblResiduo" runat="server"></asp:Label>
                     </div>
                 </div>
             </div>
         </div>
     </article>
+     <telerik:RadWindowManager ID="RadWindowManager1" runat="server" EnableShadow="true">
+        <Windows>
+            <telerik:RadWindow ID="wDetalle" runat="server" Title="DETALLE DE LA ORDEN" Behaviors="Pin, Close" OnClientClose="wDetalle_Close" Width="860"
+            Top="0" Left="0" VisibleOnPageLoad="false" ReloadOnShow="false" ShowContentDuringLoad="true" Modal="true" VisibleStatusbar="false" Skin="MetroTouch">
+            </telerik:RadWindow>
+        </Windows>
+        </telerik:RadWindowManager>
+     <telerik:RadCodeBlock ID="RadCodeBlock1" runat="server">
+
+        <script type="text/javascript">
+
+            function GetRadWindow() {
+                var oWindow = null;
+                if (window.radWindow)
+                    oWindow = window.radWindow;
+                else if (window.frameElement.radWindow)
+                    oWindow = window.frameElement.radWindow;
+
+                return oWindow;
+            }
+
+            function EditarOrden() {
+                var oWnd = $find("<%= wDetalle.ClientID %>");
+                oWnd.setUrl("detalleEstadoCuenta.aspx");
+                oWnd.add_close(wDetalle_Close);
+                oWnd.show();
+                return false;
+            }
+            function wDetalle_Close(sender, args) {
+                try {
+                    var arg = args.get_arguments();
+                    if (arg) {
+                        var IdAgravio = arg.IdAgravio;
+                        if (IdAgravio != "") {
+                            window.location.reload();
+                        }
+                    }
+                } catch (err) { }
+            }
+        </script>
+    </telerik:RadCodeBlock>
 </asp:Content>

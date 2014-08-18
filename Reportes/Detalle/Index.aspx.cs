@@ -84,22 +84,40 @@ public partial class Reportes_Index : System.Web.UI.Page
 
         //}
 
-        SetDataGrid();
+        PonerEstadoCuenta();
         
     }
     protected void TipoOrden_SelectedIndexChanged(object sender, Telerik.Web.UI.DropDownListEventArgs e)
     {
         GenerarReporte.Visible = true;
     }
-    private void SetDataGrid()
+    private void PonerEstadoCuenta()
     {
         DateTime fechaIni = fechaInicial.SelectedDate.Value,
                 fechaFin = fechaFinal.SelectedDate.Value;
         var idFideicomiso = int.Parse(RadDropDownFideicomisos.SelectedValue);
+        var dsEstadoCuenta = servicio.ObtenerEstadoCuenta(fechaIni, fechaFin, idFideicomiso);
+        decimal totalEntrada = 0.0m, totalSalida = 0.0m, totalResiduo = 0.0m;
 
-        rgEstadoCuenta.DataSource = servicio.ObtenerEstadoCuenta(fechaIni, fechaFin, idFideicomiso);
+        foreach(var estadoCuenta in dsEstadoCuenta){
+            totalEntrada += estadoCuenta.ImporteEntrada.HasValue ? estadoCuenta.ImporteEntrada.Value : 0.0m;
+            totalSalida += estadoCuenta.ImporteSalida.HasValue ? estadoCuenta.ImporteSalida.Value : 0.0m;
+        }
+
+        totalResiduo = totalEntrada - totalSalida;
+        lblTotalEntrada.Text = totalEntrada.ToString("C2");
+        lblTotalSalida.Text = totalSalida.ToString("C2");
+        lblResiduo.Text = totalResiduo.ToString("C2");
+
+
+        rgEstadoCuenta.DataSource = dsEstadoCuenta;
         rgEstadoCuenta.DataBind();
+        rgEstadoCuenta.Visible = true;
+        lblFooter.Visible = true;
+
+        
     }
+
 
 } 
 

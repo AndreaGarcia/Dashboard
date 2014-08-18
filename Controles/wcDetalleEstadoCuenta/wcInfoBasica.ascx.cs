@@ -11,6 +11,7 @@ public partial class Controles_wcDetalleEstadoCuenta_wcInfoBasica : System.Web.U
     private int _tipoSecundario;
     private int _idOrden;
     private readonly RepositorioEntrada repositorioEntrada;
+    private readonly RepositorioPago repositorioPago;
     public int TipoOrdenPrincipal
     {
         get
@@ -50,13 +51,23 @@ public partial class Controles_wcDetalleEstadoCuenta_wcInfoBasica : System.Web.U
     }
     public void OnInit()
     {
+        errores.Text = string.Empty;
+
         if (TipoOrdenPrincipal == 1) //ORDEN DE PAGO/SALIDA
         {
+            var informacion = repositorioPago.ObtenerInfoBasica(IdOrden);
 
+            if (informacion != null)
+            {
+                Fideicomiso.Text = informacion.Fideicomiso;
+                FechaFin.Text = informacion.Fecha.ToShortDateString();
+                Empresa.Text = informacion.Empresa;
+                NumOrden.Text = informacion.NumOrden.ToString();
+                Estatus.Text = informacion.Estatus;
+            }
         }
         if(TipoOrdenPrincipal==2) //ORDEN DE ENTRADA
         {
-            errores.Text = string.Empty;
             var informacion = repositorioEntrada.ObtenerInfoBasica(IdOrden);
 
             if (informacion != null)
@@ -67,8 +78,6 @@ public partial class Controles_wcDetalleEstadoCuenta_wcInfoBasica : System.Web.U
                 NumOrden.Text = informacion.NumOrden.ToString();
                 Estatus.Text = informacion.Estatus;
             }
-            else
-                errores.Text = "Ocurrio un error con la orden de pago";
         }
         errores.Text = "Ocurrio un error al validar la Orden";
     }
